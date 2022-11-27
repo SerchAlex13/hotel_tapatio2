@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Room;
+use App\Models\User;
+use App\Mail\Factura;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
+use App\Mail\ReservacionHecha;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class ReservationController extends Controller
 {
@@ -58,6 +62,8 @@ class ReservationController extends Controller
         $request->merge(['user_id' => Auth::id()]);
 
         $reservation = Reservation::create($request->all());
+
+        Mail::to(Auth::user()->email)->send(new ReservacionHecha(Auth::user()));
 
         return redirect('/reservation');
     }
@@ -121,5 +127,15 @@ class ReservationController extends Controller
         $reservation->delete();
 
         return redirect('/reservation');
+    }
+
+    public function notificarFactura(User $user)
+    {
+        //Mail::to($evento->user->email)->send(new NotificaEvento($evento));
+
+        Mail::to($user->email)->send(new Factura($user));
+
+        
+        return view('/interfaces/estado_cuenta_pagado');
     }
 }

@@ -4,11 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\ColorController;
-use App\Http\Controllers\TallaController;
-use App\Http\Controllers\CompraController;
-use App\Http\Controllers\PrendaController;
-use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\ReservationController;
 
 /*
@@ -38,9 +33,16 @@ Route::get('/registro_usuario', function () {
     return view('interfaces/registro_usuario');
 });
 
-Route::get('/prenda/correo/{user}/{prenda}', [PrendaController::class, 'notificarNuevaPrenda'])->name('prenda.correo');
+Route::get('/estado_cuenta', function () {
+    return view('interfaces/estado_cuenta');
+});
 
-Route::get('/descarga/{archivo}', [PrendaController::class, 'descargaArchivo'])->name('descarga');
+Route::get('/estado_cuenta_pagado', function () {
+    return view('interfaces/estado_cuenta_pagado');
+});
+
+Route::get('/estado_cuenta/{user}', [ReservationController::class, 'notificarFactura'])->name('factura.correo');
+
 
 
 Route::resource('user', UserController::class);

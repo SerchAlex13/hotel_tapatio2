@@ -15,6 +15,9 @@
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'>
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body style="background-color:#f5f5f5;">
 
@@ -38,6 +41,9 @@
                     </li>
                     <li class="nav-item p-2">
                         <a class="nav-link" href="/type">Habitaciones</a>
+                    </li>
+                    <li class="nav-item p-2">
+                        <a class="nav-link" href="/estado_cuenta">Estado de cuenta</a>
                     </li>
                     @can('roomAdministrador', App\Models\Room::class)
                     <li class="nav-item p-2">

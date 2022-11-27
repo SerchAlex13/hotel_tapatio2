@@ -1,7 +1,7 @@
 @component('mail::message')
-# Notificación de nueva prenda
+# Reservación hecha
 
-La prenda {{ $prenda->nombre }} ha sido creada.
+Se ha reservado .
 
 @component('mail::button', ['url' => route('prenda.show', $prenda)])
 Ver prenda
