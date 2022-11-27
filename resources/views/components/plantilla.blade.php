@@ -19,12 +19,11 @@
 <body style="background-color:#f5f5f5;">
 
     {{-- Menú navbar --}}
-    <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #003cff;">
+    <nav class="navbar sticky-top navbar-expand-md navbar-dark" style="background-color: #17002e;">
         <div class="container-fluid">
             {{-- Icono --}}
-            <a class="navbar-brand" href="/prenda">
-                <i class="bi bi-tag-fill"></i>
-                <span class="text-light">DSA Diseños</span>
+            <a class="navbar-brand" href="/">
+                <img class="logo" src="{{ \Storage::url('public/img/logo_white2.png') }}" alt="logo">
             </a>
             {{-- Botón del menú --}}
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,34 +34,33 @@
             <div class="collapse navbar-collapse" id="menu">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item p-2">
-                        <a class="nav-link active" href="#">Inicio</a>
+                        <a class="nav-link" href="/">Inicio</a>
                     </li>
                     <li class="nav-item p-2">
-                        <a class="nav-link" href="#">Precios</a>
+                        <a class="nav-link" href="/type">Habitaciones</a>
                     </li>
+                    @can('roomAdministrador', App\Models\Room::class)
                     <li class="nav-item p-2">
-                        <a class="nav-link" href="#">Servicios</a>
+                        <a class="nav-link" href="/room">Administrar habitaciones</a>
                     </li>
-                    <li class="nav-item p-2 d-flex flex-fill">
-                        <form class="d-flex" role="search">
-                            <div class="input-group mb-2">
-                                <input class="form-control" type="search" placeholder="Buscar" aria-label="Search" size="50">
-                                <button class="btn btn-info" type="submit">Buscar</button>
-                            </div>
-                        </form>
-                    </li>
+                    @endcan
                     <li class="nav-item dropdown p-2">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                             {{ \Auth::user() ? \Auth::user()->name : 'Mi cuenta' }}
                         </a>
                         <ul class="dropdown-menu">
+                            @cannot('typeLogeado', App\Models\Type::class)
                             <li><a class="dropdown-item" href="/iniciar_sesion">Iniciar sesión</a></li>
-                            <li><a class="dropdown-item" href="/perfil">Perfil</a></li>
                             <li><a class="dropdown-item" href="/registro_usuario">Regístrate</a></li>
-                            @can('accionAdministrador', App\Models\Prenda::class)
+                            @endcan
+                            @can('typeLogeado', App\Models\Type::class)
+                            <li><a class="dropdown-item" href="/user/profile">Perfil</a></li>
+                            @endcan
+                            @can('typeAdministrador', App\Models\Type::class)
                             <li><a class="dropdown-item" href="/user">Administrar usuarios</a></li>
                             @endcan
                             <li><hr class="dropdown-divider"></li>
+                            @can('typeLogeado', App\Models\Type::class)
                             <li>
                                 <div class="d-flex justify-content-center">
                                     <form class="p-2" method="POST" action="/logout">
@@ -71,10 +69,14 @@
                                     </form>
                                 </div>
                             </li>
+                            @endcan
                         </ul>
                     </li>
                     <li class="nav-item p-2">
-                        <a href="/carrito" class="nav-link">Carrito</a>
+                        <a class="nav-link" href="tel:"><i class=""></i>01 2345 6789</a>
+                    </li>
+                    <li class="nav-item p-2">
+                        <a class="nav-link" href="mailto:"><i class=""></i>hotel_tapatio@gmail.com</a>
                     </li>
                 </ul>
 

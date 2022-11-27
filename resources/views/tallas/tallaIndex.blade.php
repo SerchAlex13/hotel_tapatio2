@@ -1,3 +1,0 @@
-<x-plantillaDashboard>
-
-</x-plantillaDashboard>

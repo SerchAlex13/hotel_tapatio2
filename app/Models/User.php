@@ -59,8 +59,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'profile_photo_url',
     ];
 
-    public function carritos()
+    public function reservations()
     {
-        return $this->hasMany(Carrito::class);
+        return $this->hasMany(Reservation::class);
     }
 }

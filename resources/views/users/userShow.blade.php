@@ -53,6 +53,7 @@
                         <div class="col-md-2">
                             <select name="rol" class="form-control selectpicker">
                                 <option value="Administrador" {{ $user->rol === 'Administrador' ? 'selected' : '' }}>Administrador</option>
+                                <option value="Gerente" {{ $user->rol === 'Gerente' ? 'selected' : '' }}>Gerente</option>
                                 <option value="Empleado" {{ $user->rol === 'Empleado' ? 'selected' : '' }}>Empleado</option>
                                 <option value="Cliente" {{ $user->rol === 'Cliente' ? 'selected' : '' }}>Cliente</option>
                             </select>
